@@ -1,6 +1,6 @@
 from pyDatalog import pyDatalog
 from random import randint
-pyDatalog.create_terms('X, Y, y, Sum,Average,SumRand,Rand')
+pyDatalog.create_terms('X, Y, y, Sum,Average,SumRand,Rand,Median')
 number=10
 
 (y[X] == sum_(Y, for_each=Y)) <= ((Y._in(range_(X+1))))
@@ -14,4 +14,5 @@ randlist = sorted([randint(0, 99) for _ in range(0, 100)])
 (y[Rand] == sum_(X, for_each = X)) <= X.in_(Rand)
 print(f"{SumRand ==y[randlist] }\n")
 
-
+(y[Rand] == Y) <= ((Rand[49] + Rand[50]) / 2 == Y)
+print(  Median==y[randlist])
