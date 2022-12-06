@@ -1,11 +1,17 @@
 from pyDatalog import pyDatalog
-import random
-pyDatalog.create_terms('X, Y, y, Sm,Average')
+from random import randint
+pyDatalog.create_terms('X, Y, y, Sum,Average,SumRand,Rand')
 number=10
 
 (y[X] == sum_(Y, for_each=Y)) <= ((Y._in(range_(X+1))))
-print(f"{Sm == y[number]}")
+print(f"{Sum == y[number]}")
 
 (y[X] == Y) <= (X / 2 == Y)
 print(f"{Average == y[number]}\n")
+
+randlist = sorted([randint(0, 99) for _ in range(0, 100)])
+
+(y[Rand] == sum_(X, for_each = X)) <= X.in_(Rand)
+print(f"{SumRand ==y[randlist] }\n")
+
 
