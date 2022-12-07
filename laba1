@@ -7,7 +7,15 @@ class Company:
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
 
-b1 = Company( "ИП Матаков") 
-b1.info()
+class Department(Company):
+    def __init__(self,companyname,Dep):
+        Company.__init__(self, companyname)
+        self.Dep = Dep
+    def info(self):
+        print("Компания: "+ str(self.companyname),"Отдел: "+ str(self.Dep))
+    def to_json(self):
+        return json.dumps(self, default=lambda o: o.__dict__, indent=4)
 
+b1 = Department( "ИП Матаков","Бюджет") 
+b1.info()
 
