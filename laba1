@@ -60,11 +60,23 @@ class WorkersColection:
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
 
+        
+
+def export_company(file_name, company):
+    with open(file_name, "w") as the_file:
+        the_file.write(company.to_json())   
+
+def import_company(file_name):
+    with open("the_file.json", "r") as read_file:
+        data = json.load(read_file)
+    return data
 
 b1 = Worker( "ИП Матаков","Бюджет","Уборщик",People("Сергей","36"),15000) 
 b2 = Worker( "ИП Беляшев","Бюджет","Бухгалтер",People("Миша","25"),23000) 
 b3 = WorkersColection( [b1,b2] )
 for i in b3:
  print(i)
-
+export_company("the_file.json",b3)
+imported_company = import_company("the_file.json")
+print(imported_company)
 
