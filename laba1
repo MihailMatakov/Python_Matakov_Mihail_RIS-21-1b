@@ -25,8 +25,23 @@ class  PostPeople(Department):
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
 
-  
+class People:
+    def __init__(self, name = "People", age = 0):
+        self.name = name
+        self.age = age
+    def to_json(self):
+        return json.dumps(self, default=lambda o: o.__dict__, indent=4)
 
-b1 = PostPeople( "ИП Матаков","Бюджет","Уборщик") 
-b1.info()
+class Worker(PostPeople):  
+    def __init__(self,companyname="",Dep="",Post="",People = People(),salary=""):
+        PostPeople.__init__(self,companyname,Dep,Post)
+        self.People = People
+        self.salary =salary
+    def info(self):
+        return f"Компания: {str(self.companyname)} Отдел: {str(self.Dep)}, Должность: {str(self.Post)} Имя {str(self.People.name)} Возраст {str(self.People.age)} Зарплата: {str(self.salary)}"
+    def __str__(self):
+        return self.info()
+
+b1 = Worker( "ИП Беляев","Бюджет","Уборщик",People("Сергей","36"),15000) 
+print(b1.info())
 
