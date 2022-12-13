@@ -2,7 +2,7 @@ import json
 class Company:
     def __init__(self,companyname):
         self.companyname = companyname
-    def info(self):
+    def __repr__(self):
          return f"Компания: {str(self.companyname)} "
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
@@ -11,7 +11,7 @@ class Department(Company):
     def __init__(self,companyname,Dep):
         Company.__init__(self, companyname)
         self.Dep = Dep
-    def info(self):
+    def __repr__(self):
           return f"Компания: {str(self.companyname)} Отдел: {str(self.Dep)} "
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
@@ -20,7 +20,7 @@ class  PostPeople(Department):
     def __init__(self,companyname,Dep,Post):
         Department.__init__(self,companyname,Dep)
         self.Post = Post
-    def info(self):
+    def __repr__(self):
         return f"Компания: {str(self.companyname)} Отдел: {str(self.Dep)}, Должность: {str(self.Post)} "
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
@@ -37,7 +37,7 @@ class Worker(PostPeople):
         PostPeople.__init__(self,companyname,Dep,Post)
         self.People = People
         self.salary=Salary
-    def info(self):
+    def __repr__(self):
         return f"Компания: {str(self.companyname)} Отдел: {str(self.Dep)}, Должность: {str(self.Post)} Имя {str(self.People.name)} Возраст {str(self.People.age)}Зарплата {str(self.Salary)}"
     def __str__(self):
         return self.info()
