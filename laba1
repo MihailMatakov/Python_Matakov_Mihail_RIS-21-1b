@@ -3,7 +3,7 @@ class Company:
     def __init__(self,companyname):
         self.companyname = companyname
     def info(self):
-        print("Компания: "+ str(self.companyname))
+         return f"Компания: {str(self.companyname)} "
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
 
@@ -12,7 +12,7 @@ class Department(Company):
         Company.__init__(self, companyname)
         self.Dep = Dep
     def info(self):
-        print("Компания: "+ str(self.companyname),"Отдел: "+ str(self.Dep))
+          return f"Компания: {str(self.companyname)} Отдел: {str(self.Dep)} "
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
 
@@ -21,7 +21,7 @@ class  PostPeople(Department):
         Department.__init__(self,companyname,Dep)
         self.Post = Post
     def info(self):
-        print("Компания: "+ str(self.companyname),"Отдел: "+ str(self.Dep),"Должность: "+ str(self.Post))
+        return f"Компания: {str(self.companyname)} Отдел: {str(self.Dep)}, Должность: {str(self.Post)} "
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
 
@@ -33,12 +33,12 @@ class People:
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
 
 class Worker(PostPeople):  
-    def __init__(self,companyname="",Dep="",Post="",People = People(),salary=""):
+    def __init__(self,companyname="",Dep="",Post="",People = People(),Salary=""):
         PostPeople.__init__(self,companyname,Dep,Post)
         self.People = People
-        self.salary =salary
+        self.salary=Salary
     def info(self):
-        return f"Компания: {str(self.companyname)} Отдел: {str(self.Dep)}, Должность: {str(self.Post)} Имя {str(self.People.name)} Возраст {str(self.People.age)} Зарплата: {str(self.salary)}"
+        return f"Компания: {str(self.companyname)} Отдел: {str(self.Dep)}, Должность: {str(self.Post)} Имя {str(self.People.name)} Возраст {str(self.People.age)}Зарплата {str(self.Salary)}"
     def __str__(self):
         return self.info()
        
@@ -71,8 +71,8 @@ def import_company(file_name):
         data = json.load(read_file)
     return data
 
-b1 = Worker( "ИП Матаков","Бюджет","Уборщик",People("Сергей","36"),15000) 
-b2 = Worker( "ИП Беляшев","Бюджет","Бухгалтер",People("Миша","25"),23000) 
+b1 = Worker( "ИП Матаков","Бюджет","Уборщик",People("Сергей","36")) 
+b2 = Worker( "ИП Беляшев","Бюджет","Бухгалтер",People("Миша","25")) 
 b3 = WorkersColection( [b1,b2] )
 for i in b3:
  print(i)
